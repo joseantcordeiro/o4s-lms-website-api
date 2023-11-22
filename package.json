@@ -1,0 +1,32 @@
+{
+  "name": "o4s-lms-website-api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "O4S LMS public website api using libSQL and ChiselStrike Turso with Drizzle",
+  "scripts": {
+    "link": "pnpm link ../../drizzle-orm/dist; pnpm link ../../drizzle-zod/dist",
+    "test:types": "tsc --noEmit",
+    "start": "tsx src/index.ts",
+    "generate": "drizzle-kit generate:sqlite"
+  },
+  "author": "Drizzle Team",
+  "dependencies": {
+    "@hono/node-server": "^1.2.3",
+    "@hono/zod-validator": "^0.1.11",
+    "@libsql/client": "^0.3.0",
+    "drizzle-orm": "^0.29.0",
+    "hono": "^3.10.2",
+    "sqlite3": "^5.1.6",
+    "ws": "^8.14.2",
+    "znv": "^0.4.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.18.2",
+    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.20.4",
+    "drizzle-zod": "^0.5.1",
+    "tsx": "^4.2.0",
+    "typescript": "^5.3.2"
+  }
+}
