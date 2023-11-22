@@ -4,4 +4,4 @@ export default {
 	out: './migrations',
 	schema: './src/schema.ts',
 	breakpoints: true,
-} satisfies Config;
+} satisfies Config

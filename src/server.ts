@@ -9,8 +9,9 @@ import { Hono } from 'hono'
 import { logger } from 'hono/logger'
 import { cors } from 'hono/cors'
 import { type z } from 'zod'
-import { DATABASE_AUTH_TOKEN, DATABASE_URL } from './env'
+import { O4S_API_KEY, DATABASE_AUTH_TOKEN, DATABASE_URL } from './env'
 import { insertFaqSchema, insertTestimonialSchema, faqs, selectFaqSchema, selectTestimonialSchema, testimonials } from './schema'
+import { middleware } from './middleware'
 //import { aggregateOneToMany } from './utils'
 
 const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN })
@@ -29,6 +30,9 @@ app.onError((err, ctx) => {
 
 app.use('*', logger())
 app.use('*', cors())
+app.notFound((ctx) => ctx.json({ message: 'Not Found', ok: false }, 404))
+
+app.use('*', middleware)
 
 const listFaqsResponse = selectFaqSchema.array()
 
