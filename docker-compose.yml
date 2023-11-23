@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    image: o4s-lms-website-api
+    container_name: o4s-lms-website-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      O4S_API_KEY: ${O4S_API_KEY}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_AUTH_TOKEN: ${DATABASE_AUTH_TOKEN}
+    ports:
+      - '4001:4001'
