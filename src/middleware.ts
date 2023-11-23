@@ -14,4 +14,6 @@ export async function middleware(
   if (!valid) return ctx.json({ message: 'Unauthorized', ok: false }, 401)
  
   await next()
+
+	return
 }

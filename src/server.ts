@@ -9,15 +9,22 @@ import { Hono } from 'hono'
 import { logger } from 'hono/logger'
 import { cors } from 'hono/cors'
 import { type z } from 'zod'
-import { O4S_API_KEY, DATABASE_AUTH_TOKEN, DATABASE_URL } from './env'
-import { insertFaqSchema, insertTestimonialSchema, faqs, selectFaqSchema, selectTestimonialSchema, testimonials } from './schema'
+import { DATABASE_AUTH_TOKEN, DATABASE_URL } from './env'
+import {
+	insertFaqSchema,
+	insertTestimonialSchema,
+	faqs,
+	selectFaqSchema,
+	selectTestimonialSchema,
+	testimonials
+} from './schema'
 import { middleware } from './middleware'
 //import { aggregateOneToMany } from './utils'
 
 const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN })
 export const db = drizzle(client)
 
-export const app = new Hono()
+export const app = new Hono().basePath('/website/api')
 
 app.onError((err, ctx) => {
 	if ('format' in err) {
